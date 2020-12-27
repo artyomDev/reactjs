@@ -186,33 +186,7 @@
       "contributions": [
         "code"
       ]
-    },
-    {
-      "login": "selrond",
-      "name": "Sebastian Andil",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/6603389?v=4",
-      "profile": "http://sebastianandil.com",
-      "contributions": [
-        "doc"
-      ]
-    },
-    {
-      "login": "adnanhusain15",
-      "name": "Adnan Husain",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/36721076?v=4",
-      "profile": "https://github.com/adnanhusain15",
-      "contributions": [
-        "doc"
-      ]
-    },
-    {
-      "login": "artola",
-      "name": "martin",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/11500763?v=4",
-      "profile": "https://github.com/artola",
-      "contributions": [
-        "doc"
-      ]
+
     }
   ],
   "contributorsPerLine": 7,
