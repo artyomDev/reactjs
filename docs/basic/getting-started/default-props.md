@@ -22,13 +22,15 @@ const Greet = ({ age = 21 }: GreetProps) => // etc
 Class Components:
 
 ```tsx
-type GreetProps =  {
+type GreetProps = {
   age?: number;
 };
 
 class Greet extends React.Component<GreetProps> {
-  const { age = 21 } = this.props
-  /*...*/
+  render() {
+    const { age = 21 } = this.props;
+    /*...*/
+  }
 }
 
 let el = <Greet age={3} />;
@@ -100,8 +102,7 @@ export type ApparentGreetProps = JSX.LibraryManagedAttributes<
 >;
 ```
 
-``
-This will work properly, although hovering over `ApparentGreetProps` may be a little intimidating. You can reduce this boilerplate with the `ComponentProps` utility detailed below.
+``This will work properly, although hovering over`ApparentGreetProps`may be a little intimidating. You can reduce this boilerplate with the`ComponentProps` utility detailed below.
 
 </details>
 

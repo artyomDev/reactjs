@@ -60,7 +60,71 @@
 
 <summary><b>Expand Table of Contents</b></summary>
 
-- [Section 1: Setup](#section-1-setup)
+- [Section 1: Setup TypeScript with React](#section-1-setup-typescript-with-react)
+  - [Prerequisites](#prerequisites)
+  - [React + TypeScript Starter Kits](#react--typescript-starter-kits)
+  - [Import React](#import-react)
+- [Section 2: Getting Started](#section-2-getting-started)
+  - [Function Components](#function-components)
+  - [Hooks](#hooks)
+  - [useState](#usestate)
+  - [useReducer](#usereducer)
+  - [useEffect](#useeffect)
+  - [useRef](#useref)
+  - [useImperativeHandle](#useimperativehandle)
+  - [Custom Hooks](#custom-hooks)
+  - [Class Components](#class-components)
+  - [You May Not Need `defaultProps`](#you-may-not-need-defaultprops)
+  - [Typing `defaultProps`](#typing-defaultprops)
+  - [Consuming Props of a Component with defaultProps](#consuming-props-of-a-component-with-defaultprops)
+    - [Problem Statement](#problem-statement)
+    - [Solution](#solution)
+  - [Misc Discussions and Knowledge](#misc-discussions-and-knowledge)
+  - [Types or Interfaces?](#types-or-interfaces)
+  - [Basic Prop Types Examples](#basic-prop-types-examples)
+  - [Useful React Prop Type Examples](#useful-react-prop-type-examples)
+  - [getDerivedStateFromProps](#getderivedstatefromprops)
+  - [Forms and Events](#forms-and-events)
+  - [Context](#context)
+  - [Basic Example](#basic-example)
+  - [Extended Example](#extended-example)
+  - [forwardRef/createRef](#forwardrefcreateref)
+  - [Portals](#portals)
+  - [Error Boundaries](#error-boundaries)
+    - [Option 1: Using react-error-boundary](#option-1-using-react-error-boundary)
+    - [Options 2: Writing your custom error boundary component](#options-2-writing-your-custom-error-boundary-component)
+  - [Concurrent React/React Suspense](#concurrent-reactreact-suspense)
+- [Troubleshooting Handbook: Types](#troubleshooting-handbook-types)
+  - [Union Types and Type Guarding](#union-types-and-type-guarding)
+  - [Optional Types](#optional-types)
+  - [Enum Types](#enum-types)
+  - [Type Assertion](#type-assertion)
+  - [Simulating Nominal Types](#simulating-nominal-types)
+  - [Intersection Types](#intersection-types)
+  - [Union Types](#union-types)
+  - [Overloading Function Types](#overloading-function-types)
+  - [Using Inferred Types](#using-inferred-types)
+  - [Using Partial Types](#using-partial-types)
+  - [The Types I need weren't exported!](#the-types-i-need-werent-exported)
+  - [The Types I need don't exist!](#the-types-i-need-dont-exist)
+    - [Slapping `any` on everything](#slapping-any-on-everything)
+    - [Autogenerate types](#autogenerate-types)
+    - [Typing Exported Hooks](#typing-exported-hooks)
+    - [Typing Exported Components](#typing-exported-components)
+- [Troubleshooting Handbook: Operators](#troubleshooting-handbook-operators)
+- [Troubleshooting Handbook: Utilities](#troubleshooting-handbook-utilities)
+- [Troubleshooting Handbook: tsconfig.json](#troubleshooting-handbook-tsconfigjson)
+- [Troubleshooting Handbook: Fixing bugs in official typings](#troubleshooting-handbook-fixing-bugs-in-official-typings)
+- [Troubleshooting Handbook: Globals, Images and other non-TS files](#troubleshooting-handbook-globals-images-and-other-non-ts-files)
+- [Other React + TypeScript resources](#other-react--typescript-resources)
+- [Editor Tooling and Integration](#editor-tooling-and-integration)
+- [Linting](#linting)
+- [Other React + TypeScript resources](#other-react--typescript-resources-1)
+- [Recommended React + TypeScript talks](#recommended-react--typescript-talks)
+- [Time to Really Learn TypeScript](#time-to-really-learn-typescript)
+- [Example App](#example-app)
+- [My question isn't answered here!](#my-question-isnt-answered-here)
+  - [Contributors](#contributors)
   <!--START-SECTION:setup-toc-->
   - [Prerequisites](#prerequisites)
   - [React + TypeScript Starter Kits](#react--typescript-starter-kits)
@@ -114,7 +178,7 @@
 
 <!--START-SECTION:setup-->
 
-# Section 1: Setup
+# Section 1: Setup TypeScript with React
 
 ## Prerequisites
 
@@ -127,14 +191,32 @@ This guide will always assume you are starting with the latest TypeScript versio
 
 ## React + TypeScript Starter Kits
 
-1. [Create React App v2.1+ with TypeScript](https://facebook.github.io/create-react-app/docs/adding-typescript): `npx create-react-app my-app --template typescript`
+Cloud setups:
 
-- We used to recommend `create-react-app-typescript` but it is now [deprecated](https://www.reddit.com/r/reactjs/comments/a5919a/createreactapptypescript_has_been_archived_rip/). [see migration instructions](https://vincenttunru.com/migrate-create-react-app-typescript-to-create-react-app/)
+- [TypeScript Playground with React](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwCwAUKJLHAN5wCuqWAyjMhhYANFx4BRAgSz44AXzhES5Snhi1GjLAA8W8XBAB2qeAGEInQ0KjjtycABsscALxwAFAEpXAPnaM4OANjeABtA0sYUR4Yc0iAXVcxPgEhdwAGT3oGAOTJaXx3L19-BkDAgBMIXE4QLCsAOhhgGCckgAMATQsgh2BcAGssCrgAEjYIqwVmutR27MC5LM0yuEoYTihDD1zAgB4K4AA3H13yvbAfbs5e-qGRiYspuBmsVD2Aekuz-YAjThgMCMcCMpj6gxcbGKLj8MTiVnck3gAGo4ABGTxyU6rcrlMF3OB1H5wT7-QFGbG4z6HE65ZYMOSMIA) just if you are debugging types (and reporting issues)
+- [CodeSandbox](http://ts.react.new) - cloud IDE, boots up super fast
+- [Stackblitz](https://stackblitz.com/edit/react-typescript-base) - same as CodeSandbox
 
-2. [Basarat's guide](https://github.com/basarat/typescript-react/tree/master/01%20bootstrap) for **manual setup** of React + TypeScript + Webpack + Babel
+Local dev setups:
 
+- [Next.js](https://nextjs.org/docs/basic-features/typescript): `npx create-next-app -e with-typescript` will create in your current folder
+- [Create React App](https://facebook.github.io/create-react-app/docs/adding-typescript): `npx create-react-app name-of-app --template typescript` will create in new folder
+- [Meteor](https://guide.meteor.com/build-tool.html#typescript): `meteor create --typescript name-of-my-new-typescript-app`
+- [Ignite](https://github.com/infinitered/ignite#use-ignite-andross-infinite-red-andross-boilerplate) for React Native: `ignite new myapp`
+- TSDX for Creating React+TS libraries
+
+Less mature tools still worth checking out:
+
+- [Vite](https://twitter.com/swyx/status/1282727239230996480?lang=en): `npm init vite-app my-react-project --template react-ts` (note - not yet v1.0, but very fast)
+- [Snowpack](<https://www.snowpack.dev/#create-snowpack-app-(csa)>): `npx create-snowpack-app my-app --template app-template-react-typescript`
+- [Docusaurus v2](https://v2.docusaurus.io/docs/installation) with [TypeScript Support](https://v2.docusaurus.io/docs/typescript-support)
+- [Parcel](https://v2.parceljs.org/languages/typescript/)
+
+Manual setup:
+
+- [Basarat's guide](https://github.com/basarat/typescript-react/tree/master/01%20bootstrap) for **manual setup** of React + TypeScript + Webpack + Babel
 - In particular, make sure that you have `@types/react` and `@types/react-dom` installed ([Read more about the DefinitelyTyped project if you are unfamiliar](https://definitelytyped.org/))
-- There are also many React + TypeScript boilerplates, please see [our Resources list below](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet#recommended-react--typescript-codebases-to-learn-from).
+- There are also many React + TypeScript boilerplates, please see [our Other Resources list](https://react-typescript-cheatsheet.netlify.app/docs/basic/recommended/resources/).
 
 ## Import React
 
@@ -143,7 +225,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 ```
 
-In [TypeScript 2.7+](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html), you can run TypeScript with `--allowSyntheticDefaultImports` (or add `"allowSyntheticDefaultImports": true` to tsconfig) to import like in regular jsx:
+This is the [most futureproof way](https://www.reddit.com/r/reactjs/comments/iyehol/import_react_from_react_will_go_away_in_distant/) to import React. If you set `--allowSyntheticDefaultImports` (or add `"allowSyntheticDefaultImports": true`) in your `tsconfig.json` you can use more familiar imports:
 
 ```tsx
 import React from "react";
@@ -156,7 +238,7 @@ import ReactDOM from "react-dom";
 
 Why `allowSyntheticDefaultImports` over `esModuleInterop`? [Daniel Rosenwasser](https://twitter.com/drosenwasser/status/1003097042653073408) has said that it's better for webpack/parcel. For more discussion check out <https://github.com/wmonk/create-react-app-typescript/issues/214>
 
-You should also check [the new TypeScript docs for official descriptions between each compiler flag](https://www.typescriptlang.org/v2/en/tsconfig#allowSyntheticDefaultImports)!
+You should also check [the new TypeScript docs for official descriptions between each compiler flag](https://www.typescriptlang.org/tsconfig#allowSyntheticDefaultImports)!
 
 </details>
 
@@ -195,7 +277,7 @@ Some differences from the "normal function" version:
 
   - Note that there are some known issues using `defaultProps` with `React.FunctionComponent`. See [this issue for details](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet/issues/87). We maintain a separate `defaultProps` section you can also look up.
 
-- It provides an implicit definition of `children` (see below) - however there are some issues with the implicit `children` type (e.g. [DefinitelyTyped#33006](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33006)), and it might considered better style to be explicit about components that consume `children`, anyway.
+- It provides an implicit definition of `children` (see below) - however there are some issues with the implicit `children` type (e.g. [DefinitelyTyped#33006](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33006)), and it might be better to be explicit about components that consume `children`, anyway.
 
 ```tsx
 const Title: React.FunctionComponent<{ title: string }> = ({
@@ -207,7 +289,7 @@ const Title: React.FunctionComponent<{ title: string }> = ({
 <details>
 <summary>
 
-As of [@types/react PR #46643](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/46643) (TODO: update with @types/react version when merged), you can use a new `React.VoidFunctionComponent` or `React.VFC` type if you wish to declare the accepted `children` explicitly. This is an interim solution until FunctionComponent will accept no children by default (planned for React 18).
+As of [@types/react 16.9.48](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/46643), you can also use `React.VoidFunctionComponent` or `React.VFC` type if you want to type `children` explicitly. This is an interim solution until `FunctionComponent` will accept no children by default (planned for `@types/react@^18.0.0`).
 
 </summary>
 
@@ -309,7 +391,7 @@ setUser(newUser);
 
 ## useReducer
 
-You can use [Discriminated Unions](https://www.typescriptlang.org/docs/handbook/advanced-types.html#discriminated-unions) for reducer actions. Don't forget to define the return type of reducer, otherwise TypeScript will infer it.
+You can use [Discriminated Unions](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#discriminated-unions) for reducer actions. Don't forget to define the return type of reducer, otherwise TypeScript will infer it.
 
 ```tsx
 const initialState = { count: 0 };
@@ -520,16 +602,16 @@ Note that the React team recommends that custom hooks that return more than two 
 
 More Hooks + TypeScript reading:
 
-- https://medium.com/@jrwebdev/react-hooks-in-typescript-88fce7001d0d
-- https://fettblog.eu/typescript-react/hooks/#useref
+- <https://medium.com/@jrwebdev/react-hooks-in-typescript-88fce7001d0d>
+- <https://fettblog.eu/typescript-react/hooks/#useref>
 
 If you are writing a React Hooks library, don't forget that you should also expose your types for users to use.
 
 Example React Hooks + TypeScript Libraries:
 
-- https://github.com/mweststrate/use-st8
-- https://github.com/palmerhq/the-platform
-- https://github.com/sw-yx/hooks
+- <https://github.com/mweststrate/use-st8>
+- <https://github.com/palmerhq/the-platform>
+- <https://github.com/sw-yx/hooks>
 
 [Something to add? File an issue](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet/issues/new).
 
@@ -667,13 +749,15 @@ const Greet = ({ age = 21 }: GreetProps) => // etc
 Class Components:
 
 ```tsx
-type GreetProps =  {
+type GreetProps = {
   age?: number;
 };
 
 class Greet extends React.Component<GreetProps> {
-  const { age = 21 } = this.props
-  /*...*/
+  render() {
+    const { age = 21 } = this.props;
+    /*...*/
+  }
 }
 
 let el = <Greet age={3} />;
@@ -745,8 +829,7 @@ export type ApparentGreetProps = JSX.LibraryManagedAttributes<
 >;
 ```
 
-``
-This will work properly, although hovering over `ApparentGreetProps` may be a little intimidating. You can reduce this boilerplate with the `ComponentProps` utility detailed below.
+``This will work properly, although hovering over`ApparentGreetProps`may be a little intimidating. You can reduce this boilerplate with the`ComponentProps` utility detailed below.
 
 </details>
 
@@ -964,7 +1047,9 @@ export declare interface AppProps {
   functionChildren: (name: string) => React.ReactNode; // recommended function as a child render prop type
   style?: React.CSSProperties; // to pass through style props
   onChange?: React.FormEventHandler<HTMLInputElement>; // form events! the generic parameter is the type of event.target
-  props: Props & React.PropsWithoutRef<JSX.IntrinsicElements["button"]>; // to impersonate all the props of a button element without its ref
+  //  more info: https://react-typescript-cheatsheet.netlify.app/docs/advanced/patterns_by_usecase/#wrappingmirroring
+  props: Props & React.ComponentPropsWithoutRef<"button">; // to impersonate all the props of a button element and explicitly not forwarding its ref
+  props2: Props & React.ComponentPropsWithRef<MyButtonWithForwardRef>; // to impersonate all the props of MyButtonForwardedRef and explicitly forwarding its ref
 }
 ```
 
@@ -1177,7 +1262,7 @@ const AppCtx = React.createContext<AppContextInterface | null>(null);
 // Provider in your app
 
 const sampleAppContext: AppContextInterface = {
-  name: "Using React Context in a Typescript App",
+  name: "Using React Context in a TypeScript App",
   author: "thehappybug",
   url: "http://www.example.com",
 };
@@ -1468,6 +1553,30 @@ export const FancyButton = React.forwardRef<Ref, Props>((props, ref) => (
   </button>
 ));
 ```
+
+<details>
+  <summary>
+    
+    Side note: the `ref` you get from `forwardRef` is mutable so you can assign to it if needed.
+    
+  </summary>
+
+This was done [on purpose](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/43265/). You can make it immutable if you have to - assign `React.Ref` if you want to ensure nobody reassigns it:
+
+```tsx
+type Props = { children: React.ReactNode; type: "submit" | "button" };
+export type Ref = HTMLButtonElement;
+export const FancyButton = React.forwardRef((
+  props: Props,
+  ref: React.Ref<Ref> // <-- here!
+) => (
+  <button ref={ref} className="MyClassName" type={props.type}>
+    {props.children}
+  </button>
+));
+```
+
+</details>
 
 If you are grabbing the props of a component that forwards refs, use [`ComponentPropsWithRef`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/a05cc538a42243c632f054e42eab483ebf1560ab/types/react/index.d.ts#L770).
 
@@ -2246,7 +2355,7 @@ This section needs writing, but you can probably find a good starting point with
 
 # Troubleshooting Handbook: tsconfig.json
 
-You can find [all the Compiler options in the TypeScript docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html). [The new TS docs also has per-flag annotations of what each does](https://www.typescriptlang.org/v2/en/tsconfig#allowSyntheticDefaultImports). This is the setup I roll with for APPS (not libraries - for libraries you may wish to see the settings we use in `tsdx`):
+You can find [all the Compiler options in the TypeScript docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html). [The new TS docs also has per-flag annotations of what each does](https://www.typescriptlang.org/tsconfig#allowSyntheticDefaultImports). This is the setup I roll with for APPS (not libraries - for libraries you may wish to see the settings we use in `tsdx`):
 
 ```json
 {
@@ -2290,7 +2399,7 @@ Selected flags and why we like them:
 - `strict`: `strictPropertyInitialization` forces you to initialize class properties or explicitly declare that they can be undefined. You can opt out of this with a definite assignment assertion.
 - `"typeRoots": ["./typings", "./node_modules/@types"]`: By default, TypeScript looks in `node_modules/@types` and parent folders for third party type declarations. You may wish to override this default resolution so you can put all your global type declarations in a special `typings` folder.
 
-Compilation speed grows linearly with size of codebase. For large projects, you will want to use [Project References](https://www.typescriptlang.org/docs/handbook/project-references.html). See our [ADVANCED](https://react-typescript-cheatsheet.netlify.app/docs/advanced/) cheatsheet for commentary.
+Compilation speed grows linearly with size of codebase. For large projects, you will want to use [Project References](https://www.typescriptlang.org/docs/handbook/project-references.html). See our [ADVANCED](https://react-typescript-cheatsheet.netlify.app/docs/advanced/intro/) cheatsheet for commentary.
 
 <!--END-SECTION:ts-config-->
 
@@ -2544,7 +2653,7 @@ You can read a [fuller TypeScript + ESLint setup guide here](https://blog.matter
 
 Another great resource is ["Using ESLint and Prettier in a TypeScript Project"](https://dev.to/robertcoopercode/using-eslint-and-prettier-in-a-typescript-project-53jb) by @robertcoopercode.
 
-If you're looking for information on Prettier, check out the [Prettier](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet/blob/master/ADVANCED.md#prettier).
+If you're looking for information on Prettier, check out the [Prettier](https://github.com/typescript-cheatsheets/react/blob/main/docs/advanced/misc-concerns.md#prettier).
 
 <!--END-SECTION:linting-->
 
