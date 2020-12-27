@@ -149,8 +149,8 @@ async function getReadme() {
       headingLevel: 1,
     });
     initialContent = await updateSectionWith({
-      name: "resources",
-      path: "docs/basic/recommended/resources.md",
+      name: "useful-hooks",
+      path: "docs/basic/useful-hooks.md",
       to: initialContent,
       headingLevel: 1,
     });
@@ -167,14 +167,20 @@ async function getReadme() {
       headingLevel: 1,
     });
     initialContent = await updateSectionWith({
-      name: "other-resources",
-      path: "docs/basic/recommended/other-resources.md",
+      name: "resources",
+      path: "docs/basic/recommended/resources.md",
       to: initialContent,
       headingLevel: 1,
     });
     initialContent = await updateSectionWith({
       name: "talks",
       path: "docs/basic/recommended/talks.md",
+      to: initialContent,
+      headingLevel: 1,
+    });
+    initialContent = await updateSectionWith({
+      name: "codebases",
+      path: "docs/basic/recommended/codebases.md",
       to: initialContent,
       headingLevel: 1,
     });
@@ -197,13 +203,15 @@ async function getReadme() {
       path: "README.md",
       message: `Updated README on ${new Date().toISOString()}`,
       sha: readme.sha,
-      branch: "master",
+      branch: "main",
     });
   } catch (err) {
     console.error(
       `🚨 You've encountered a ${err.name} ➜ ${err.message} \n` +
         `💡 ProTip ➜ Please ensure your credentials are up-to-date or the path to your file exists.`
     );
+    console.error({ repo_details });
+    console.error(err);
   }
 })();
 async function updateSectionWith(options) {
@@ -263,7 +271,7 @@ function generateContentForSection(options) {
     let lines = section_options.content.toc.split("\n");
     for (let i = 0, len = lines.length; i < len; i += 1)
       fenceContent +=
-        "\t".repeat(section_options.tabLevel) +
+        "  ".repeat(section_options.tabLevel) +
         lines[i] +
         (i !== len - 1 ? "\n" : "");
   } else {
@@ -289,6 +297,9 @@ function getFenceForSection(readme, sectionName, isToc = false) {
       `🚨 You've encountered a ${err.name} ➜ ${err.message} \n` +
         `💡 ProTip ➜ Please ensure the comments exist and are separated by a newline.`
     );
+
+    console.error({ readme, sectionName });
+    console.error(err);
   }
 }
 function getFence(sectionName, isToc = false) {
