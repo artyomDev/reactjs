@@ -9,11 +9,16 @@ jobs:
   prettier:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout commit
+        uses: actions/checkout@v2
+        if: ${{ github.event_name == 'push' }}
+      
+      - name: Checkout Pull Request
         uses: actions/checkout@v2
         with:
-          # Make sure the actual branch is checked out when running on pull requests
-          ref: ${{ github.head_ref }}
+          # TODO: Can we unify the checkout steps i.e. does this value resolve to "undefined" on `push`?
+          ref: ${{ github.event.pull_request.head.sha }}
+        if: ${{ github.event_name == 'pull_request' }}
 
       - name: Get yarn cache directory
         id: yarn
@@ -28,18 +33,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Prettify code
-        uses: creyD/prettier_action@v2.2
-        with:
-          # This part is also where you can pass other options, for example:
-          prettier_options: --write **/*.md
-
-      # old formatting code
-      #- name: Format code
-      #  run: yarn format
-
-      #- name: Format correct?
-      #  run: git diff --exit-code
+      - name: '`yarn format` changes committed?'
+        run: yarn format:check
 
       - name: Danger for Spell Checking
         run: |
