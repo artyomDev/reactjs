@@ -81,12 +81,13 @@ Special note on `ts-loader` and 3rd party libraries: https://twitter.com/acemark
 
 > Our central finding is that both static type systems find an important percentage of public bugs: both Flow 0.30 and TypeScript 2.0 successfully detect 15%!
 
-- [Empirical study on the impact of static typing](https://www.researchgate.net/publication/259634489_An_empirical_study_on_the_impact_of_static_typing_on_software_maintainability) 
+- [Empirical study on the impact of static typing](https://www.researchgate.net/publication/259634489_An_empirical_study_on_the_impact_of_static_typing_on_software_maintainability)
 
 see also [Things I was Wrong About: Types](https://v5.chriskrycho.com/journal/things-i-was-wrong-about/1-types/)
 
 ## Misc migration stories by notable companies and open source
 
+- [Bloomberg](https://www.techatbloomberg.com/blog/10-insights-adopting-typescript-at-scale/)
 - [Adopting TypeScript at Scale - AirBnB's conversion story and strategy](https://www.youtube.com/watch?v=P-J9Eg7hJwE)
 - [Lyft](https://eng.lyft.com/typescript-at-lyft-64f0702346ea)
 - [Google](http://neugierig.org/software/blog/2018/09/typescript-at-google.html)
@@ -96,7 +97,7 @@ see also [Things I was Wrong About: Types](https://v5.chriskrycho.com/journal/th
 - [Priceline](https://medium.com/priceline-labs/trying-out-typescript-part-1-15a5267215b9)
 - Dropbox
   - [Talk at React Loop](https://www.youtube.com/watch?v=veXkJq0Z2Qk)
-  - [Blogpost: The Great CoffeeScript to Typescript Migration of 2017](https://dropbox.tech/frontend/the-great-coffeescript-to-typescript-migration-of-2017)
+  - [Blogpost: The Great CoffeeScript to TypeScript Migration of 2017](https://dropbox.tech/frontend/the-great-coffeescript-to-typescript-migration-of-2017)
 - [Heap - How we failed, then succeeded, at migrating to TypeScript](https://heap.io/blog/analysis/migrating-to-typescript)
 
 Open Source
