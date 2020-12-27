@@ -60,7 +60,71 @@
 
 <summary><b>Expand Table of Contents</b></summary>
 
-- [Section 1: Setup](#section-1-setup)
+- [Section 1: Setup TypeScript with React](#section-1-setup-typescript-with-react)
+  - [Prerequisites](#prerequisites)
+  - [React + TypeScript Starter Kits](#react--typescript-starter-kits)
+  - [Import React](#import-react)
+- [Section 2: Getting Started](#section-2-getting-started)
+  - [Function Components](#function-components)
+  - [Hooks](#hooks)
+  - [useState](#usestate)
+  - [useReducer](#usereducer)
+  - [useEffect](#useeffect)
+  - [useRef](#useref)
+  - [useImperativeHandle](#useimperativehandle)
+  - [Custom Hooks](#custom-hooks)
+  - [Class Components](#class-components)
+  - [You May Not Need `defaultProps`](#you-may-not-need-defaultprops)
+  - [Typing `defaultProps`](#typing-defaultprops)
+  - [Consuming Props of a Component with defaultProps](#consuming-props-of-a-component-with-defaultprops)
+    - [Problem Statement](#problem-statement)
+    - [Solution](#solution)
+  - [Misc Discussions and Knowledge](#misc-discussions-and-knowledge)
+  - [Types or Interfaces?](#types-or-interfaces)
+  - [Basic Prop Types Examples](#basic-prop-types-examples)
+  - [Useful React Prop Type Examples](#useful-react-prop-type-examples)
+  - [getDerivedStateFromProps](#getderivedstatefromprops)
+  - [Forms and Events](#forms-and-events)
+  - [Context](#context)
+  - [Basic Example](#basic-example)
+  - [Extended Example](#extended-example)
+  - [forwardRef/createRef](#forwardrefcreateref)
+  - [Portals](#portals)
+  - [Error Boundaries](#error-boundaries)
+    - [Option 1: Using react-error-boundary](#option-1-using-react-error-boundary)
+    - [Options 2: Writing your custom error boundary component](#options-2-writing-your-custom-error-boundary-component)
+  - [Concurrent React/React Suspense](#concurrent-reactreact-suspense)
+- [Troubleshooting Handbook: Types](#troubleshooting-handbook-types)
+  - [Union Types and Type Guarding](#union-types-and-type-guarding)
+  - [Optional Types](#optional-types)
+  - [Enum Types](#enum-types)
+  - [Type Assertion](#type-assertion)
+  - [Simulating Nominal Types](#simulating-nominal-types)
+  - [Intersection Types](#intersection-types)
+  - [Union Types](#union-types)
+  - [Overloading Function Types](#overloading-function-types)
+  - [Using Inferred Types](#using-inferred-types)
+  - [Using Partial Types](#using-partial-types)
+  - [The Types I need weren't exported!](#the-types-i-need-werent-exported)
+  - [The Types I need don't exist!](#the-types-i-need-dont-exist)
+    - [Slapping `any` on everything](#slapping-any-on-everything)
+    - [Autogenerate types](#autogenerate-types)
+    - [Typing Exported Hooks](#typing-exported-hooks)
+    - [Typing Exported Components](#typing-exported-components)
+- [Troubleshooting Handbook: Operators](#troubleshooting-handbook-operators)
+- [Troubleshooting Handbook: Utilities](#troubleshooting-handbook-utilities)
+- [Troubleshooting Handbook: tsconfig.json](#troubleshooting-handbook-tsconfigjson)
+- [Troubleshooting Handbook: Fixing bugs in official typings](#troubleshooting-handbook-fixing-bugs-in-official-typings)
+- [Troubleshooting Handbook: Globals, Images and other non-TS files](#troubleshooting-handbook-globals-images-and-other-non-ts-files)
+- [Other React + TypeScript resources](#other-react--typescript-resources)
+- [Editor Tooling and Integration](#editor-tooling-and-integration)
+- [Linting](#linting)
+- [Other React + TypeScript resources](#other-react--typescript-resources-1)
+- [Recommended React + TypeScript talks](#recommended-react--typescript-talks)
+- [Time to Really Learn TypeScript](#time-to-really-learn-typescript)
+- [Example App](#example-app)
+- [My question isn't answered here!](#my-question-isnt-answered-here)
+  - [Contributors](#contributors)
   <!--START-SECTION:setup-toc-->
   - [Prerequisites](#prerequisites)
   - [React + TypeScript Starter Kits](#react--typescript-starter-kits)
@@ -225,7 +289,7 @@ const Title: React.FunctionComponent<{ title: string }> = ({
 <details>
 <summary>
 
-You can also use `React.VoidFunctionComponent` or `React.VFC` type if you want to type `children` explicitly. This is an interim solution until `FunctionComponent` will accept no children by default (planned for `@types/react@^18.0.0`).
+As of [@types/react 16.9.48](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/46643), you can also use `React.VoidFunctionComponent` or `React.VFC` type if you want to type `children` explicitly. This is an interim solution until `FunctionComponent` will accept no children by default (planned for `@types/react@^18.0.0`).
 
 </summary>
 
@@ -685,13 +749,15 @@ const Greet = ({ age = 21 }: GreetProps) => // etc
 Class Components:
 
 ```tsx
-type GreetProps =  {
+type GreetProps = {
   age?: number;
 };
 
 class Greet extends React.Component<GreetProps> {
-  const { age = 21 } = this.props
-  /*...*/
+  render() {
+    const { age = 21 } = this.props;
+    /*...*/
+  }
 }
 
 let el = <Greet age={3} />;
@@ -1196,7 +1262,7 @@ const AppCtx = React.createContext<AppContextInterface | null>(null);
 // Provider in your app
 
 const sampleAppContext: AppContextInterface = {
-  name: "Using React Context in a Typescript App",
+  name: "Using React Context in a TypeScript App",
   author: "thehappybug",
   url: "http://www.example.com",
 };
