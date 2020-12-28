@@ -121,53 +121,6 @@
         "doc",
         "ideas"
       ]
-    },
-    {
-      "login": "ryota-murakami",
-      "name": "Ryota Murakami",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/5501268?v=4",
-      "profile": "https://ryota-murakami.github.io/",
-      "contributions": [
-        "example",
-        "doc"
-      ]
-    },
-    {
-      "login": "arpi17",
-      "name": "Árpád Illyés",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/13800404?v=4",
-      "profile": "https://github.com/arpi17",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "xamgore",
-      "name": "Igor Strebezhev",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/4586392?v=4",
-      "profile": "https://twitter.com/xamgore",
-      "contributions": [
-        "ideas",
-        "doc"
-      ]
-    },
-    {
-      "login": "dwjohnston",
-      "name": "David Johnston",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/2467377?v=4",
-      "profile": "https://geoplanets.io",
-      "contributions": [
-        "doc"
-      ]
-    },
-    {
-      "login": "kripod",
-      "name": "Kristóf Poduszló",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/14854048?v=4",
-      "profile": "https://github.com/kripod",
-      "contributions": [
-        "doc"
-      ]
     }
   ],
   "contributorsPerLine": 7,
