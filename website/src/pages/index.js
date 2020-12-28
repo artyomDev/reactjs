@@ -5,6 +5,8 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import Layout from "@theme/Layout";
 
+// default function
+
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
